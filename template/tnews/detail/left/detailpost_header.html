@@ -1,0 +1,15 @@
+<header class="article-header mb-4">
+  <h1 style="margin-left: 10px; width: 100%;"  class="article-title">{{ post.title }}</h1>
+  <div class="article-meta">
+    <span class="author-profile">
+    <img src="{{ post.author.userprofile.image.url }}" alt="{{ post.author.username }}" />
+      By <a href="#" class="text-decoration-none ms-1">{{ post.author.get_full_name|default:post.author.username }}</a>
+    </span>
+    <span><i class="bi bi-calendar-event"></i> Published: {{ post.published_at }}</span>
+    <span><i class="bi bi-eye"></i> Views: {{ post.views_count }}</span>
+    <span><i class="bi bi-folder"></i>Category: <a href="#" class="text-decoration-none ms-1">{{ post.category.name|title }}</a></span>
+    <span><i class="bi bi-tags"></i>Tags: <a href="#" class="text-decoration-none ms-1">#{{ post.tag.name|title }}</a></span>
+  </div>
+  <img style="width: 1300px;" src="{{ post.featured_image.url }}"
+       alt="{{ post.title }}" />
+</header>

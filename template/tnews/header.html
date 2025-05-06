@@ -1,0 +1,82 @@
+<nav class="navbar navbar-expand-lg sticky-top elegant-navbar">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/">NewsPortal</a>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=download" />
+      <button class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'post-list' %}">Latest News</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle"
+               href="#"
+               role="button"
+               data-bs-toggle="dropdown"
+               aria-expanded="false">Categories</a>
+            <ul class="dropdown-menu">
+              
+              {% for category in categories %}
+              <li>
+              <a  class="dropdown-item" href="{% url 'post-by-category' category.id %}">{{ category.name }}</a>
+              </li>
+              {% endfor %} 
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'categories' %}">All Categories</a>
+              </li>             
+              <li>
+                <a class="dropdown-item" href="{% url 'tags' %}">All Tags</a>
+              </li>
+              </ul>
+              </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#newsletter-section">Newsletter</a>
+          </li>
+        </ul>
+        <form class="d-flex me-3" role="search" method="get" action="{% url 'post-search' %}">
+          <input class="form-control form-control-sm me-2"
+                 type="search"
+                 placeholder="Search..."
+                 aria-label="Search" value="{{ query }}"  name="query" />
+          <button class="btn btn-outline-success btn-sm" type="submit">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
+        <div class="form-check form-switch">
+          <input class="form-check-input"
+                 type="checkbox"
+                 role="switch"
+                 id="darkModeSwitch" 
+                 />
+          <label class="form-check-label" for="darkModeSwitch">
+            <i class="bi bi-moon-stars-fill"></i>
+          </label>
+          <label for="" style="padding-left: 10px;">
+          <a href="{% url 'user-report' %}"><span class="material-symbols-outlined">
+            download
+            </span> </a>
+          </label>
+        </div>
+      </div>
+    </div>
+  </nav>

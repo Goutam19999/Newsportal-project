@@ -1,0 +1,18 @@
+{% extends "tnews/base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h1 class="mb-4 section-title">
+    <span>Latest News</span>
+  </h1>
+
+  <div class="row">
+    <!-- News Listing Column -->
+    {% include "tnews/list/post_list.html" with posts=page_obj %} 
+    <!-- Sidebar (Reused Structure) -->
+    {% include "tnews/slidebar/slidebar.html" %}
+    {% include "tnews/footer.html" %}
+  
+  </div>
+</div>
+{% include "tnews/footer.html" %}
+{% endblock content %}

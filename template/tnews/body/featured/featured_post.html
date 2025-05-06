@@ -1,0 +1,10 @@
+<h3 class="mt-5 mb-3 section-title"><span>Featured Photos</span></h3>
+<div class="row row-cols-2 row-cols-lg-3 g-3">
+    {% for post in featured_posts %}
+    <div class="col">
+        <a href="{% url 'post-detail' post.pk %}" data-bs-toggle="modal" data-bs-target="#photoModal1">
+            <img src="{{ post.featured_image.url }}" class="img-fluid rounded shadow-sm featured-photo" alt="Featured Photo 1">
+        </a>
+    </div>
+    {% endfor %}
+</div>

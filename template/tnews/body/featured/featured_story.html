@@ -1,0 +1,15 @@
+<div class="card mb-4 featured-story-card shadow-sm">
+  <img src="{{ featured_post.featured_image.url }} " width="800px"
+       class="card-img-top"
+       alt="{{ featured_post.title }}" width="160px"/>
+  <div class="card-body">
+    <a style="text-decoration: none;" href="{% url 'post-detail' featured_post.pk %}"><h2 class="card-title fw-bold">{{ featured_post.title|truncatechars:40 }}</h2></a>
+    <p class="card-text">
+      {{ featured_post.content|truncatechars:100 }}
+    </p>
+    <!-- <a href="{% url 'post-detail' featured_post.pk %}" class="btn btn-success">Read More <i class="bi bi-arrow-right-short"></i></a> -->
+    <p class="card-text mt-2">
+      <small class="text-muted">{{ featured_post.published_at }}</small>
+    </p>
+  </div>
+</div>
