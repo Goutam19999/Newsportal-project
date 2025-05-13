@@ -1,0 +1,30 @@
+<div class="card p-4 shadow-sm mb-4">
+  <form action="{% url 'post-comment' %}" method="post">
+    {% csrf_token %}
+    {{ form.errors }}
+    <input type="hidden" name="post" value="{{ post.pk }}">
+    
+    <div class="mb-3">
+      <label for="commentText" class="form-label">Leave a Comment</label>
+      <textarea class="form-control"
+                id="commentText"
+                name="comment"
+                rows="4"
+                placeholder="Write your comment here...">{{ form.comment.value }}</textarea>
+      {{ form.comment.errors }}
+    </div>
+
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input class="form-control"
+             name="name"
+             id="name"
+             type="text"
+             placeholder="Your Name"
+             value="{{ form.name.value }}">
+      {{ form.name.errors }}
+    </div>
+
+    <button type="submit" class="btn btn-success">Post Comment</button>
+  </form>
+</div>

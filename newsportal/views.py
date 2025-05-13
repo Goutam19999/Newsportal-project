@@ -194,18 +194,38 @@ class NewsLetterView(View):
                 status=400,
             )
         
+# class CommentView(View):
+#     def post(self,request,*args,**kwargs):
+#         form = CommentForm(request.POST)
+#         post_id = request.POST["post"]
+#         if form.is_valid():
+#             form.save()
+#             return redirect("post-detail", post_id)
+        
+#         post = Post.objects.get(pk=post_id)
+#         return render(
+#             request,
+#             "tnews/detail/detail.html",
+#             {"post" :post , "form": form},
+#         )        
+        
 class CommentView(View):
-    def post(self,request,*args,**kwargs):
-        form = CommentForm(request.POST)
+    def post(self, request, *args, **kwargs):
         post_id = request.POST["post"]
+
+        form = CommentForm(request.POST)
         if form.is_valid():
-            form.save()
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.save()
             return redirect("post-detail", post_id)
-        
-        post = Post.objects.get(pk=post_id)
-        return render(
-            request,
-            "tnews/detail/detail.html",
-            {"post" :post , "form": form},
-        )        
-        
+        else:
+            post = Post.objects.get(pk=post_id)
+            return render(
+                request,
+                "tnews/detail/detail.html",
+                {
+                    "post": post,
+                    "form": form,
+                },
+            )        
